@@ -60,10 +60,15 @@ export function OrchestrationOverviewSlide() {
     rafRef.current = requestAnimationFrame(tick)
   }
 
-  useEffect(() => () => { if (rafRef.current) cancelAnimationFrame(rafRef.current) }, [])
+  useEffect(
+    () => () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    },
+    []
+  )
 
   function isActive(segments: Segment[], p: number) {
-    return segments.some(s => p >= s.start && p <= s.end)
+    return segments.some((s) => p >= s.start && p <= s.end)
   }
 
   return (
@@ -72,17 +77,23 @@ export function OrchestrationOverviewSlide() {
       <div className="orch-container">
         <div className="orch-timeline" onClick={startAnimation}>
           <div className="orch-rows">
-            {AGENTS.slice(0, 1).map(agent => {
+            {AGENTS.slice(0, 1).map((agent) => {
               const active = isActive(agent.segments, progress)
               return (
-                <div key={agent.id} className={`orch-row${active ? ' orch-row--active' : ''}`}>
+                <div
+                  key={agent.id}
+                  className={`orch-row${active ? ' orch-row--active' : ''}`}
+                >
                   <div className="orch-row__label">{agent.name}</div>
                   <div className="orch-row__track">
                     {agent.segments.map((seg, i) => {
                       const leftPct = seg.start * 100
-                      const filledWidth = Math.max(0, Math.min(progress, seg.end) - seg.start) * 100
+                      const filledWidth =
+                        Math.max(0, Math.min(progress, seg.end) - seg.start) *
+                        100
                       const isDone = progress > seg.end
-                      const isCurrent = progress >= seg.start && progress <= seg.end
+                      const isCurrent =
+                        progress >= seg.start && progress <= seg.end
                       return (
                         <div
                           key={i}
@@ -92,7 +103,9 @@ export function OrchestrationOverviewSlide() {
                             width: `${filledWidth}%`,
                             background: seg.color,
                             opacity: isDone ? 0.28 : isCurrent ? 1 : 0,
-                            boxShadow: isCurrent ? `0 0 12px ${seg.color}` : 'none',
+                            boxShadow: isCurrent
+                              ? `0 0 12px ${seg.color}`
+                              : 'none',
                           }}
                         />
                       )
@@ -104,17 +117,23 @@ export function OrchestrationOverviewSlide() {
             <div className="orch-divider">
               <span className="orch-divider__label">subagents</span>
             </div>
-            {AGENTS.slice(1).map(agent => {
+            {AGENTS.slice(1).map((agent) => {
               const active = isActive(agent.segments, progress)
               return (
-                <div key={agent.id} className={`orch-row${active ? ' orch-row--active' : ''}`}>
+                <div
+                  key={agent.id}
+                  className={`orch-row${active ? ' orch-row--active' : ''}`}
+                >
                   <div className="orch-row__label">{agent.name}</div>
                   <div className="orch-row__track">
                     {agent.segments.map((seg, i) => {
                       const leftPct = seg.start * 100
-                      const filledWidth = Math.max(0, Math.min(progress, seg.end) - seg.start) * 100
+                      const filledWidth =
+                        Math.max(0, Math.min(progress, seg.end) - seg.start) *
+                        100
                       const isDone = progress > seg.end
-                      const isCurrent = progress >= seg.start && progress <= seg.end
+                      const isCurrent =
+                        progress >= seg.start && progress <= seg.end
                       return (
                         <div
                           key={i}
@@ -124,7 +143,9 @@ export function OrchestrationOverviewSlide() {
                             width: `${filledWidth}%`,
                             background: seg.color,
                             opacity: isDone ? 0.28 : isCurrent ? 1 : 0,
-                            boxShadow: isCurrent ? `0 0 12px ${seg.color}` : 'none',
+                            boxShadow: isCurrent
+                              ? `0 0 12px ${seg.color}`
+                              : 'none',
                           }}
                         />
                       )
@@ -135,34 +156,64 @@ export function OrchestrationOverviewSlide() {
             })}
             <div
               className="orch-cursor"
-              style={{ left: `calc(var(--label-w) + ${progress} * (100% - var(--label-w)))` }}
+              style={{
+                left: `calc(var(--label-w) + ${progress} * (100% - var(--label-w)))`,
+              }}
             />
           </div>
           <p className="orch-hint">
-            {running ? 'Running\u2026' : progress >= 1 ? 'Click to replay' : 'Click to simulate'}
+            {running
+              ? 'Running\u2026'
+              : progress >= 1
+                ? 'Click to replay'
+                : 'Click to simulate'}
           </p>
         </div>
 
         <div className="orch-points">
           <div className="orch-point">
-            <span className="orch-point__icon" style={{ color: 'var(--accent)' }}>◆</span>
+            <span
+              className="orch-point__icon"
+              style={{ color: 'var(--accent)' }}
+            >
+              ◆
+            </span>
             <div>
               <strong>Context window isolation</strong>
-              <p>Each subagent has its own context — the main agent never hits its limit</p>
+              <p>
+                Each subagent has its own context — the main agent never hits
+                its limit
+              </p>
             </div>
           </div>
           <div className="orch-point">
-            <span className="orch-point__icon" style={{ color: 'var(--yellow)' }}>◆</span>
+            <span
+              className="orch-point__icon"
+              style={{ color: 'var(--yellow)' }}
+            >
+              ◆
+            </span>
             <div>
               <strong>Parallel subagents</strong>
-              <p>Prompt the agent to spawn multiple subagents simultaneously to gather info or make changes</p>
+              <p>
+                Prompt the agent to spawn multiple subagents simultaneously to
+                gather info or make changes
+              </p>
             </div>
           </div>
           <div className="orch-point">
-            <span className="orch-point__icon" style={{ color: 'var(--green)' }}>◆</span>
+            <span
+              className="orch-point__icon"
+              style={{ color: 'var(--green)' }}
+            >
+              ◆
+            </span>
             <div>
               <strong>Results flow back up</strong>
-              <p>Subagents complete their work and report back — the orchestrator synthesizes and acts</p>
+              <p>
+                Subagents complete their work and report back — the orchestrator
+                synthesizes and acts
+              </p>
             </div>
           </div>
         </div>

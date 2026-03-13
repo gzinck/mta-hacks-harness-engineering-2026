@@ -16,17 +16,20 @@ export function usePresentation(): PresentationState {
 
   const next = useCallback(() => {
     if (slideSteps.handler && slideSteps.handler()) return
-    setCurrentIndex(i => Math.min(i + 1, total - 1))
+    setCurrentIndex((i) => Math.min(i + 1, total - 1))
   }, [total])
 
   const prev = useCallback(() => {
     if (slideSteps.prevHandler && slideSteps.prevHandler()) return
-    setCurrentIndex(i => Math.max(i - 1, 0))
+    setCurrentIndex((i) => Math.max(i - 1, 0))
   }, [])
 
-  const goTo = useCallback((index: number) => {
-    setCurrentIndex(Math.max(0, Math.min(index, total - 1)))
-  }, [total])
+  const goTo = useCallback(
+    (index: number) => {
+      setCurrentIndex(Math.max(0, Math.min(index, total - 1)))
+    },
+    [total]
+  )
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {

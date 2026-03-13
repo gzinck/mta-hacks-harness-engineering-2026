@@ -23,7 +23,9 @@
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
   opacity: 0;
-  transition: opacity 0.2s, color 0.2s;
+  transition:
+    opacity 0.2s,
+    color 0.2s;
   z-index: 50;
 }
 

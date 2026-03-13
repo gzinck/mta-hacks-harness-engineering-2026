@@ -68,7 +68,10 @@ export function MetapromptingSlide() {
 
   useEffect(() => {
     const t = setTimeout(startAnimation, 400)
-    return () => { clearTimeout(t); clearTimers() }
+    return () => {
+      clearTimeout(t)
+      clearTimers()
+    }
   }, [startAnimation])
 
   const isTypingInput = phase === 'typing-input'
@@ -94,12 +97,19 @@ export function MetapromptingSlide() {
 
         <div className="meta-arrow">
           <span className="meta-arrow__label">Claude writes the prompt</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
         </div>
 
-        <div className={`meta-box meta-box--output${showOutput || showLoading ? ' meta-box--visible' : ''}`}>
+        <div
+          className={`meta-box meta-box--output${showOutput || showLoading ? ' meta-box--visible' : ''}`}
+        >
           <div className="meta-box__label">Generated prompt</div>
           {showLoading ? (
             <div className="meta-loading">
@@ -110,7 +120,9 @@ export function MetapromptingSlide() {
           ) : (
             <pre className="meta-box__content meta-box__content--mono">
               {outputText}
-              {isTypingOutput && <span className="meta-cursor meta-cursor--green" />}
+              {isTypingOutput && (
+                <span className="meta-cursor meta-cursor--green" />
+              )}
             </pre>
           )}
         </div>
@@ -118,9 +130,14 @@ export function MetapromptingSlide() {
 
       <div className="meta-footer">
         <p className="meta-insight">
-          The model understands prompt structure better than you do — let it draft, you refine.
+          The model understands prompt structure better than you do — let it
+          draft, you refine.
         </p>
-        <button className="meta-replay" onClick={startAnimation} title="Replay animation">
+        <button
+          className="meta-replay"
+          onClick={startAnimation}
+          title="Replay animation"
+        >
           ↺ replay
         </button>
       </div>

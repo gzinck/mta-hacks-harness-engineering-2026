@@ -109,7 +109,7 @@ export function ToolsSlide() {
             <div className="tool-card__desc">{tool.desc}</div>
             {tool.examples && (
               <ul className="tool-card__examples">
-                {tool.examples.map(ex => (
+                {tool.examples.map((ex) => (
                   <li key={ex}>{ex}</li>
                 ))}
               </ul>

@@ -16,7 +16,11 @@ const tree: TreeNode[] = [
     kind: 'dir',
     name: 'my-app/',
     children: [
-      { kind: 'claude', name: 'CLAUDE.md', note: 'tech stack, git conventions, shared tooling' },
+      {
+        kind: 'claude',
+        name: 'CLAUDE.md',
+        note: 'tech stack, git conventions, shared tooling',
+      },
       {
         kind: 'dir',
         name: '.claude/',
@@ -41,7 +45,11 @@ const tree: TreeNode[] = [
         kind: 'dir',
         name: 'frontend/',
         children: [
-          { kind: 'claude', name: 'CLAUDE.md', note: 'React patterns, CSS conventions, Vite config' },
+          {
+            kind: 'claude',
+            name: 'CLAUDE.md',
+            note: 'React patterns, CSS conventions, Vite config',
+          },
           { kind: 'dir', name: 'src/', children: [{ kind: 'ellipsis' }] },
         ],
       },
@@ -49,7 +57,11 @@ const tree: TreeNode[] = [
         kind: 'dir',
         name: 'backend/',
         children: [
-          { kind: 'claude', name: 'CLAUDE.md', note: 'Go module layout, API patterns, DB migrations' },
+          {
+            kind: 'claude',
+            name: 'CLAUDE.md',
+            note: 'Go module layout, API patterns, DB migrations',
+          },
           { kind: 'dir', name: 'cmd/', children: [{ kind: 'ellipsis' }] },
         ],
       },
@@ -59,17 +71,29 @@ const tree: TreeNode[] = [
 
 const MAX_STEP = 1
 
-function TreeRow({ node, depth, step }: { node: TreeNode; depth: number; step: number }) {
+function TreeRow({
+  node,
+  depth,
+  step,
+}: {
+  node: TreeNode
+  depth: number
+  step: number
+}) {
   const revealStep = node.revealOnStep ?? 0
   if (step < revealStep) return null
 
   const entering = step === revealStep && revealStep > 0
   const indent = depth * 1.5
-  const cls = (base: string) => `${base}${entering ? ' tree-row--entering' : ''}`
+  const cls = (base: string) =>
+    `${base}${entering ? ' tree-row--entering' : ''}`
 
   if (node.kind === 'ellipsis') {
     return (
-      <div className={cls('tree-row tree-row--ellipsis')} style={{ paddingLeft: `${indent}rem` }}>
+      <div
+        className={cls('tree-row tree-row--ellipsis')}
+        style={{ paddingLeft: `${indent}rem` }}
+      >
         <span className="tree-connector">└──</span>
         <span className="tree-name tree-name--muted">…</span>
       </div>
@@ -78,7 +102,10 @@ function TreeRow({ node, depth, step }: { node: TreeNode; depth: number; step: n
 
   if (node.kind === 'claude') {
     return (
-      <div className={cls('tree-row tree-row--claude')} style={{ paddingLeft: `${indent}rem` }}>
+      <div
+        className={cls('tree-row tree-row--claude')}
+        style={{ paddingLeft: `${indent}rem` }}
+      >
         <span className="tree-connector">├──</span>
         <span className="tree-icon">📄</span>
         <span className="tree-name tree-name--claude">{node.name}</span>
@@ -89,7 +116,10 @@ function TreeRow({ node, depth, step }: { node: TreeNode; depth: number; step: n
 
   if (node.kind === 'rules-md') {
     return (
-      <div className={cls('tree-row tree-row--rules-md')} style={{ paddingLeft: `${indent}rem` }}>
+      <div
+        className={cls('tree-row tree-row--rules-md')}
+        style={{ paddingLeft: `${indent}rem` }}
+      >
         <span className="tree-connector">└──</span>
         <span className="tree-icon">📄</span>
         <span className="tree-name tree-name--rules-md">{node.name}</span>
@@ -101,7 +131,10 @@ function TreeRow({ node, depth, step }: { node: TreeNode; depth: number; step: n
   // dir
   return (
     <>
-      <div className={cls('tree-row tree-row--dir')} style={{ paddingLeft: `${indent}rem` }}>
+      <div
+        className={cls('tree-row tree-row--dir')}
+        style={{ paddingLeft: `${indent}rem` }}
+      >
         {depth > 0 && <span className="tree-connector">├──</span>}
         <span className="tree-icon">📁</span>
         <span className="tree-name tree-name--dir">{node.name}</span>
@@ -119,12 +152,14 @@ export function RulesMonorepoSlide() {
   useEffect(() => {
     slideSteps.handler = () => {
       if (step < MAX_STEP) {
-        setStep(s => s + 1)
+        setStep((s) => s + 1)
         return true
       }
       return false
     }
-    return () => { slideSteps.handler = null }
+    return () => {
+      slideSteps.handler = null
+    }
   }, [step])
 
   return (

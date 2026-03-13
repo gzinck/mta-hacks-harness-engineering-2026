@@ -26,7 +26,10 @@
   font-family: inherit;
   cursor: pointer;
   text-align: left;
-  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  transition:
+    color 0.15s,
+    border-color 0.15s,
+    background 0.15s;
 }
 
 .ps-item:hover {
@@ -85,6 +88,11 @@
 }
 
 @keyframes ps-blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }

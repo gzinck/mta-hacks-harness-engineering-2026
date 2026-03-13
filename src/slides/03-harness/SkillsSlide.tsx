@@ -19,7 +19,8 @@ writing any files.
 
 Create .tsx + .css with named export and TypeScript
 props interface following project conventions.`,
-    benefit: 'Asks before acting — no wasted scaffolding for the wrong component.',
+    benefit:
+      'Asks before acting — no wasted scaffolding for the wrong component.',
   },
   {
     command: '/update-doc',
@@ -42,7 +43,8 @@ Fetch the doc:
 
 Apply the requested edits with batchUpdate.
 Use gws schema output to build correct --json flags.`,
-    benefit: 'Grounds the model in real API shapes — no hallucinated field names.',
+    benefit:
+      'Grounds the model in real API shapes — no hallucinated field names.',
   },
   {
     command: '/review-pr',
@@ -58,7 +60,8 @@ Spawn three subagents in parallel:
   3. Docs & changelog reviewer
 
 Merge all findings into a single markdown report.`,
-    benefit: 'Parallel subagents cut review time — each focuses on one concern.',
+    benefit:
+      'Parallel subagents cut review time — each focuses on one concern.',
   },
 ]
 
@@ -70,14 +73,14 @@ export function SkillsSlide() {
   useEffect(() => {
     slideSteps.handler = () => {
       if (selected < skills.length - 1) {
-        setSelected(i => i + 1)
+        setSelected((i) => i + 1)
         return true
       }
       return false
     }
     slideSteps.prevHandler = () => {
       if (selected > 0) {
-        setSelected(i => i - 1)
+        setSelected((i) => i - 1)
         return true
       }
       return false
@@ -117,7 +120,7 @@ export function SkillsSlide() {
               <div className="skills-prompt__label">Skill template</div>
               <button
                 className={`skills-fm-toggle${showFrontmatter ? ' skills-fm-toggle--active' : ''}`}
-                onClick={() => setShowFrontmatter(v => !v)}
+                onClick={() => setShowFrontmatter((v) => !v)}
               >
                 frontmatter
               </button>

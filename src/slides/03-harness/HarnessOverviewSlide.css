@@ -74,7 +74,10 @@
   cursor: pointer;
   text-align: left;
   color: var(--text-muted);
-  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    color 0.15s;
 }
 
 .ctx-toggle--msgs {
@@ -152,7 +155,10 @@
   font-family: var(--font-mono);
   font-size: clamp(0.7rem, 1vw, 0.85rem);
   cursor: pointer;
-  transition: border-color 0.15s, background 0.15s, opacity 0.15s;
+  transition:
+    border-color 0.15s,
+    background 0.15s,
+    opacity 0.15s;
 }
 
 .ctx-btn--add {
@@ -171,8 +177,13 @@
 }
 
 @keyframes ctx-pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.55; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
 }
 
 .ctx-btn--pulsing {
@@ -287,8 +298,13 @@
 }
 
 @keyframes ctx-blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 .ctx-mem-pre {
@@ -357,8 +373,12 @@
   min-width: 1ch;
 }
 
-.ctx-mem-msg--user   .ctx-mem-msg-glyph { color: var(--accent); }
-.ctx-mem-msg--tool   .ctx-mem-msg-glyph { color: #4a9eff; }
+.ctx-mem-msg--user .ctx-mem-msg-glyph {
+  color: var(--accent);
+}
+.ctx-mem-msg--tool .ctx-mem-msg-glyph {
+  color: #4a9eff;
+}
 
 .ctx-mem-msg-text {
   color: var(--text);

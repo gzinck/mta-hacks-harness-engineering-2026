@@ -5,18 +5,23 @@
   /* vertical rhythm: label-above | gap | track | gap | label-below | gap | era-label */
   --label-h: clamp(70px, 12vh, 100px);
   --track-h: clamp(28px, 4vh, 40px);
-  --era-h:   clamp(26px, 3.5vh, 36px);
-  --gap:     clamp(10px, 1.8vh, 18px);
+  --era-h: clamp(26px, 3.5vh, 36px);
+  --gap: clamp(10px, 1.8vh, 18px);
   --track-top: calc(var(--label-h) + var(--gap));
-  --era-top:   calc(var(--label-h) + var(--gap) + var(--track-h) + var(--label-h));
-  height: calc(var(--label-h) + var(--gap) + var(--track-h) + var(--label-h) + var(--era-h));
+  --era-top: calc(
+    var(--label-h) + var(--gap) + var(--track-h) + var(--label-h)
+  );
+  height: calc(
+    var(--label-h) + var(--gap) + var(--track-h) + var(--label-h) + var(--era-h)
+  );
 }
 
 /* ─── Track ─── */
 .tl-track {
   position: absolute;
   top: var(--track-top);
-  left: 0; right: 0;
+  left: 0;
+  right: 0;
   height: var(--track-h);
   border-radius: 6px;
   overflow: visible;
@@ -24,22 +29,29 @@
 
 .tl-fill {
   position: absolute;
-  top: 0; bottom: 0;
+  top: 0;
+  bottom: 0;
   border-radius: 6px;
 }
 .tl-fill--hand {
-  background: rgba(255,255,255,0.03);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border);
 }
 .tl-fill--ai {
   background: var(--accent-dim);
-  border: 1px solid rgba(124,106,247,0.2);
+  border: 1px solid rgba(124, 106, 247, 0.2);
 }
 
 .tl-progress {
   position: absolute;
-  top: 0; bottom: 0; left: 0;
-  background: linear-gradient(90deg, rgba(255,255,255,0.05), rgba(124,106,247,0.2));
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(124, 106, 247, 0.2)
+  );
   border-radius: 6px;
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
@@ -47,7 +59,8 @@
 
 .tl-era-divider {
   position: absolute;
-  top: -4px; bottom: -4px;
+  top: -4px;
+  bottom: -4px;
   width: 2px;
   background: var(--accent);
   opacity: 0.45;
@@ -66,21 +79,42 @@
   border: 2px solid;
   cursor: pointer;
   padding: 0;
-  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    box-shadow 0.3s ease;
   z-index: 2;
 }
-.tl-dot--anthropic { background: #c084fc; border-color: #c084fc; }
-.tl-dot--openai    { background: var(--green);  border-color: var(--green);  }
-.tl-dot--both      { background: var(--yellow); border-color: var(--yellow); }
+.tl-dot--anthropic {
+  background: #c084fc;
+  border-color: #c084fc;
+}
+.tl-dot--openai {
+  background: var(--green);
+  border-color: var(--green);
+}
+.tl-dot--both {
+  background: var(--yellow);
+  border-color: var(--yellow);
+}
 
-.tl-dot--idle   { opacity: 0.5; }
-.tl-dot--past   { opacity: 0.8; }
-.tl-dot--future { opacity: 0.2; }
+.tl-dot--idle {
+  opacity: 0.5;
+}
+.tl-dot--past {
+  opacity: 0.8;
+}
+.tl-dot--future {
+  opacity: 0.2;
+}
 .tl-dot--active {
   transform: translate(-50%, -50%) scale(1.7);
-  box-shadow: 0 0 0 5px rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.08);
 }
-.tl-dot:hover { opacity: 1 !important; cursor: pointer; }
+.tl-dot:hover {
+  opacity: 1 !important;
+  cursor: pointer;
+}
 
 /* ─── Labels (absolutely positioned in .tl-stage) ─── */
 .tl-label {
@@ -106,7 +140,9 @@
   width: 1px;
   background: var(--border);
   opacity: 0.4;
-  transition: opacity 0.3s, background 0.3s;
+  transition:
+    opacity 0.3s,
+    background 0.3s;
 }
 
 .tl-label--above {
@@ -129,12 +165,25 @@
 }
 
 /* ── State variants ── */
-.tl-label--idle   { opacity: 0.45; }
-.tl-label--past   { opacity: 0.65; }
-.tl-label--future { opacity: 0.18; }
-.tl-label--active { opacity: 1; }
-.tl-label--active::after { opacity: 1; background: var(--accent); }
-.tl-label:hover { opacity: 1 !important; }
+.tl-label--idle {
+  opacity: 0.45;
+}
+.tl-label--past {
+  opacity: 0.65;
+}
+.tl-label--future {
+  opacity: 0.18;
+}
+.tl-label--active {
+  opacity: 1;
+}
+.tl-label--active::after {
+  opacity: 1;
+  background: var(--accent);
+}
+.tl-label:hover {
+  opacity: 1 !important;
+}
 
 /* ── Label contents ── */
 .tl-label__today {
@@ -154,13 +203,24 @@
   font-weight: 600;
   line-height: 1.25;
   font-size: clamp(0.68rem, 1.05vw, 0.82rem);
-  transition: font-size 0.35s cubic-bezier(0.4, 0, 0.2, 1), color 0.25s;
+  transition:
+    font-size 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.25s;
 }
-.tl-label__line { display: block; text-align: center; }
+.tl-label__line {
+  display: block;
+  text-align: center;
+}
 
-.tl-label--anthropic .tl-label__name { color: #c084fc; }
-.tl-label--openai    .tl-label__name { color: var(--green);  }
-.tl-label--both      .tl-label__name { color: var(--yellow); }
+.tl-label--anthropic .tl-label__name {
+  color: #c084fc;
+}
+.tl-label--openai .tl-label__name {
+  color: var(--green);
+}
+.tl-label--both .tl-label__name {
+  color: var(--yellow);
+}
 
 .tl-label--active .tl-label__name {
   font-size: clamp(1.05rem, 2vw, 1.55rem);
@@ -171,7 +231,9 @@
   font-size: clamp(0.56rem, 0.82vw, 0.68rem);
   color: var(--text-muted);
   opacity: 0.55;
-  transition: opacity 0.3s, font-size 0.3s;
+  transition:
+    opacity 0.3s,
+    font-size 0.3s;
 }
 .tl-label--active .tl-label__date {
   opacity: 1;
@@ -192,7 +254,7 @@
 }
 .tl-era--hand {
   color: var(--text-muted);
-  background: rgba(255,255,255,0.025);
+  background: rgba(255, 255, 255, 0.025);
   justify-content: flex-start;
 }
 .tl-era--ai {

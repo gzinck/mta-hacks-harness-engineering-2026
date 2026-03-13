@@ -9,14 +9,28 @@ export function App() {
 
   return (
     <div className="app" onClick={next}>
-      <div className="slide-wrapper" onClick={e => e.stopPropagation()}>
+      <div className="slide-wrapper" onClick={(e) => e.stopPropagation()}>
         <Slide />
       </div>
       <ProgressBar current={currentIndex} total={total} onDotClick={goTo} />
-      <button className="nav-btn nav-btn--prev" onClick={e => { e.stopPropagation(); prev() }} aria-label="Previous slide">
+      <button
+        className="nav-btn nav-btn--prev"
+        onClick={(e) => {
+          e.stopPropagation()
+          prev()
+        }}
+        aria-label="Previous slide"
+      >
         ‹
       </button>
-      <button className="nav-btn nav-btn--next" onClick={e => { e.stopPropagation(); next() }} aria-label="Next slide">
+      <button
+        className="nav-btn nav-btn--next"
+        onClick={(e) => {
+          e.stopPropagation()
+          next()
+        }}
+        aria-label="Next slide"
+      >
         ›
       </button>
     </div>

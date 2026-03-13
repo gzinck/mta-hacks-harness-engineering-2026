@@ -25,7 +25,7 @@ const hookExamples = [
   },
   {
     event: 'Stop',
-    trigger: 'When Claude thinks it\'s done — simplify',
+    trigger: "When Claude thinks it's done — simplify",
     example: `// .claude/settings.json
 {
   "hooks": {
@@ -44,7 +44,7 @@ skill on them and fix in-place. Return { ok: true } when done.",
   },
   {
     event: 'Stop',
-    trigger: 'When Claude thinks it\'s done — changelog',
+    trigger: "When Claude thinks it's done — changelog",
     example: `// .claude/settings.json
 {
   "hooks": {
@@ -70,12 +70,14 @@ export function HooksSlide() {
   useEffect(() => {
     slideSteps.handler = () => {
       if (selected < hookExamples.length - 1) {
-        setSelected(s => s + 1)
+        setSelected((s) => s + 1)
         return true
       }
       return false
     }
-    return () => { slideSteps.handler = null }
+    return () => {
+      slideSteps.handler = null
+    }
   }, [selected])
 
   return (

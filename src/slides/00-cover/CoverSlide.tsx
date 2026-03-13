@@ -13,14 +13,17 @@ export function CoverSlide() {
         Building the scaffolding that makes AI agents actually work
       </p>
       <div className="cover__topics">
-        {['Intro', 'Prompt Engineering', 'Harness Engineering', 'Task Orchestration'].map(
-          (t, i) => (
-            <div key={t} className="cover__topic">
-              <span className="cover__topic-num">0{i + 1}</span>
-              <span>{t}</span>
-            </div>
-          )
-        )}
+        {[
+          'Intro',
+          'Prompt Engineering',
+          'Harness Engineering',
+          'Task Orchestration',
+        ].map((t, i) => (
+          <div key={t} className="cover__topic">
+            <span className="cover__topic-num">0{i + 1}</span>
+            <span>{t}</span>
+          </div>
+        ))}
       </div>
     </div>
   )

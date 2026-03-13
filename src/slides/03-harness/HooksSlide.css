@@ -23,7 +23,9 @@
   cursor: pointer;
   font-family: inherit;
   text-align: left;
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
 }
 
 .hooks-tab:hover {

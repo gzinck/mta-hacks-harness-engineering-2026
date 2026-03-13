@@ -6,27 +6,32 @@ import './PromptingStrategiesSlide.css'
 const strategies = [
   {
     name: 'Role + Goal',
-    example: 'You are a senior TypeScript engineer. Refactor this function to eliminate side effects.',
-    why: 'Anchors the model\'s persona and narrows the task scope.',
+    example:
+      'You are a senior TypeScript engineer. Refactor this function to eliminate side effects.',
+    why: "Anchors the model's persona and narrows the task scope.",
   },
   {
     name: 'Chain of Thought',
-    example: 'Think step by step. First identify the bug, then explain why it occurs, then fix it.',
+    example:
+      'Think step by step. First identify the bug, then explain why it occurs, then fix it.',
     why: 'Forces reasoning before output — reduces hallucinated fixes.',
   },
   {
     name: 'Constrained Output',
-    example: 'Return only a JSON object with keys: { summary, files_changed, risk_level }',
+    example:
+      'Return only a JSON object with keys: { summary, files_changed, risk_level }',
     why: 'Structured output is easier to parse and less prone to drift.',
   },
   {
     name: 'Few-Shot',
-    example: 'Here are 2 examples of good commit messages:\n[...]\nNow write one for this diff:',
+    example:
+      'Here are 2 examples of good commit messages:\n[...]\nNow write one for this diff:',
     why: 'Demonstrates the pattern instead of describing it abstractly.',
   },
   {
     name: 'Ask for Advice',
-    example: 'I have retry logic happening in src/api/client.ts. What are the pros and cons of this approach? What other approaches are there? What would you recommend?',
+    example:
+      'I have retry logic happening in src/api/client.ts. What are the pros and cons of this approach? What other approaches are there? What would you recommend?',
     why: 'Trades a single answer for a richer decision — surfaces trade-offs you may not have considered.',
   },
 ]
@@ -48,13 +53,13 @@ export function PromptingStrategiesSlide() {
         if (selectedRef.current < strategies.length - 1) {
           e.preventDefault()
           e.stopPropagation()
-          setSelected(i => i + 1)
+          setSelected((i) => i + 1)
         }
       } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
         if (selectedRef.current > 0) {
           e.preventDefault()
           e.stopPropagation()
-          setSelected(i => i - 1)
+          setSelected((i) => i - 1)
         }
       }
     }
@@ -76,7 +81,9 @@ export function PromptingStrategiesSlide() {
         setTyping(false)
       }
     }, CHAR_DELAY)
-    return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current)
+    }
   }, [selected]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -100,7 +107,10 @@ export function PromptingStrategiesSlide() {
             {displayedText}
             {typing && <span className="ps-cursor" />}
           </pre>
-          <p className="ps-why" style={{ opacity: typing ? 0 : 1, transition: 'opacity 0.4s' }}>
+          <p
+            className="ps-why"
+            style={{ opacity: typing ? 0 : 1, transition: 'opacity 0.4s' }}
+          >
             {s.why}
           </p>
         </div>
