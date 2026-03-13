@@ -1,0 +1,149 @@
+.orch-container {
+  --label-w: clamp(120px, 14vw, 180px);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 2.5vw;
+  justify-content: center;
+}
+
+/* ── Timeline ─────────────────────────────────────────────── */
+
+.orch-timeline {
+  width: 100%;
+  cursor: pointer;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: border-color 0.2s;
+  user-select: none;
+}
+
+.orch-timeline:hover {
+  border-color: var(--accent);
+}
+
+.orch-rows {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+}
+
+.orch-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.orch-row__label {
+  width: var(--label-w, clamp(120px, 14vw, 180px));
+  flex-shrink: 0;
+  font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+  color: var(--text-muted);
+  transition: color 0.25s;
+  font-family: var(--font-mono);
+  padding-right: 1rem;
+}
+
+.orch-row--active .orch-row__label {
+  color: var(--text);
+}
+
+.orch-row__track {
+  flex: 1;
+  position: relative;
+  height: clamp(20px, 2.5vw, 32px);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 4px;
+  overflow: visible;
+}
+
+.orch-segment {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 4px;
+  transition: opacity 0.3s;
+}
+
+/* Divider between orchestrator and subagents */
+.orch-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-left: var(--label-w, clamp(120px, 14vw, 180px));
+  margin: 0.1rem 0;
+}
+
+.orch-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.orch-divider__label {
+  font-family: var(--font-mono);
+  font-size: clamp(0.6rem, 0.85vw, 0.72rem);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+/* Vertical time cursor */
+.orch-cursor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 1px;
+  pointer-events: none;
+  transform: translateX(-50%);
+  transition: left 0s;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+.orch-hint {
+  margin-top: clamp(0.5rem, 1vw, 0.75rem);
+  font-family: var(--font-mono);
+  font-size: clamp(0.65rem, 0.9vw, 0.78rem);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ── Bullet points ────────────────────────────────────────── */
+
+.orch-points {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2vw;
+}
+
+.orch-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.orch-point__icon {
+  font-size: 0.55rem;
+  flex-shrink: 0;
+  margin-top: 0.45rem;
+}
+
+.orch-point strong {
+  display: block;
+  font-size: clamp(0.85rem, 1.3vw, 1rem);
+  margin-bottom: 0.2rem;
+}
+
+.orch-point p {
+  font-size: clamp(0.72rem, 1.05vw, 0.88rem);
+  color: var(--text-muted);
+  line-height: 1.5;
+}

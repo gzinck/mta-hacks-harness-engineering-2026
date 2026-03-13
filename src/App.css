@@ -1,0 +1,44 @@
+.app {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: default;
+}
+
+.slide-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.nav-btn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 2.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.2s, color 0.2s;
+  z-index: 50;
+}
+
+.app:hover .nav-btn {
+  opacity: 1;
+}
+
+.nav-btn:hover {
+  color: var(--text);
+}
+
+.nav-btn--prev {
+  left: 0.5rem;
+}
+
+.nav-btn--next {
+  right: 0.5rem;
+}

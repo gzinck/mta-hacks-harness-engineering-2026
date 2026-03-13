@@ -1,0 +1,202 @@
+/* ─── Stage: single positioned ancestor for track + labels ─── */
+.tl-stage {
+  flex: 1;
+  position: relative;
+  /* vertical rhythm: label-above | gap | track | gap | label-below | gap | era-label */
+  --label-h: clamp(70px, 12vh, 100px);
+  --track-h: clamp(28px, 4vh, 40px);
+  --era-h:   clamp(26px, 3.5vh, 36px);
+  --gap:     clamp(10px, 1.8vh, 18px);
+  --track-top: calc(var(--label-h) + var(--gap));
+  --era-top:   calc(var(--label-h) + var(--gap) + var(--track-h) + var(--label-h));
+  height: calc(var(--label-h) + var(--gap) + var(--track-h) + var(--label-h) + var(--era-h));
+}
+
+/* ─── Track ─── */
+.tl-track {
+  position: absolute;
+  top: var(--track-top);
+  left: 0; right: 0;
+  height: var(--track-h);
+  border-radius: 6px;
+  overflow: visible;
+}
+
+.tl-fill {
+  position: absolute;
+  top: 0; bottom: 0;
+  border-radius: 6px;
+}
+.tl-fill--hand {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+}
+.tl-fill--ai {
+  background: var(--accent-dim);
+  border: 1px solid rgba(124,106,247,0.2);
+}
+
+.tl-progress {
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,0.05), rgba(124,106,247,0.2));
+  border-radius: 6px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.tl-era-divider {
+  position: absolute;
+  top: -4px; bottom: -4px;
+  width: 2px;
+  background: var(--accent);
+  opacity: 0.45;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+/* ─── Dots ─── */
+.tl-dot {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(10px, 1.4vw, 14px);
+  height: clamp(10px, 1.4vw, 14px);
+  border-radius: 50%;
+  border: 2px solid;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
+}
+.tl-dot--anthropic { background: #c084fc; border-color: #c084fc; }
+.tl-dot--openai    { background: var(--green);  border-color: var(--green);  }
+.tl-dot--both      { background: var(--yellow); border-color: var(--yellow); }
+
+.tl-dot--idle   { opacity: 0.5; }
+.tl-dot--past   { opacity: 0.8; }
+.tl-dot--future { opacity: 0.2; }
+.tl-dot--active {
+  transform: translate(-50%, -50%) scale(1.7);
+  box-shadow: 0 0 0 5px rgba(255,255,255,0.08);
+}
+.tl-dot:hover { opacity: 1 !important; cursor: pointer; }
+
+/* ─── Labels (absolutely positioned in .tl-stage) ─── */
+.tl-label {
+  position: absolute;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  z-index: 3;
+  user-select: none;
+}
+
+/* Tick line connecting label to track */
+.tl-label::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 1px;
+  background: var(--border);
+  opacity: 0.4;
+  transition: opacity 0.3s, background 0.3s;
+}
+
+.tl-label--above {
+  /* bottom edge of label sits var(--gap) above top of track */
+  bottom: calc(100% - var(--track-top) + var(--gap));
+  flex-direction: column-reverse; /* date on top, name below */
+}
+.tl-label--above::after {
+  top: 100%;
+  height: var(--gap);
+}
+
+.tl-label--below {
+  /* top edge sits var(--gap) below bottom of track */
+  top: calc(var(--track-top) + var(--track-h) + var(--gap));
+}
+.tl-label--below::after {
+  bottom: 100%;
+  height: var(--gap);
+}
+
+/* ── State variants ── */
+.tl-label--idle   { opacity: 0.45; }
+.tl-label--past   { opacity: 0.65; }
+.tl-label--future { opacity: 0.18; }
+.tl-label--active { opacity: 1; }
+.tl-label--active::after { opacity: 1; background: var(--accent); }
+.tl-label:hover { opacity: 1 !important; }
+
+/* ── Label contents ── */
+.tl-label__today {
+  font-family: var(--font-mono);
+  font-size: clamp(0.5rem, 0.72vw, 0.62rem);
+  letter-spacing: 0.1em;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  background: var(--accent);
+  color: #fff;
+}
+
+.tl-label__name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 600;
+  line-height: 1.25;
+  font-size: clamp(0.68rem, 1.05vw, 0.82rem);
+  transition: font-size 0.35s cubic-bezier(0.4, 0, 0.2, 1), color 0.25s;
+}
+.tl-label__line { display: block; text-align: center; }
+
+.tl-label--anthropic .tl-label__name { color: #c084fc; }
+.tl-label--openai    .tl-label__name { color: var(--green);  }
+.tl-label--both      .tl-label__name { color: var(--yellow); }
+
+.tl-label--active .tl-label__name {
+  font-size: clamp(1.05rem, 2vw, 1.55rem);
+}
+
+.tl-label__date {
+  font-family: var(--font-mono);
+  font-size: clamp(0.56rem, 0.82vw, 0.68rem);
+  color: var(--text-muted);
+  opacity: 0.55;
+  transition: opacity 0.3s, font-size 0.3s;
+}
+.tl-label--active .tl-label__date {
+  opacity: 1;
+  font-size: clamp(0.65rem, 0.95vw, 0.78rem);
+}
+
+/* ─── Era labels (positioned in .tl-stage below track) ─── */
+.tl-era {
+  position: absolute;
+  top: var(--era-top);
+  height: var(--era-h);
+  display: flex;
+  align-items: center;
+  font-size: clamp(0.65rem, 0.95vw, 0.8rem);
+  font-weight: 500;
+  padding: 0 0.75rem;
+  border-radius: 4px;
+}
+.tl-era--hand {
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.025);
+  justify-content: flex-start;
+}
+.tl-era--ai {
+  color: var(--accent);
+  background: var(--accent-dim);
+  justify-content: flex-end;
+}

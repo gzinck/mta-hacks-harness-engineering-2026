@@ -1,0 +1,110 @@
+.skills-layout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3vw;
+  flex: 1;
+  align-items: start;
+}
+
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 180px;
+}
+
+.skills-item {
+  padding: 0.75rem 1.1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: clamp(0.8rem, 1.3vw, 0.95rem);
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.skills-item:hover {
+  color: var(--green);
+  border-color: var(--green);
+}
+
+.skills-item--active {
+  color: var(--green);
+  border-color: var(--green);
+  background: rgba(74, 222, 128, 0.08);
+}
+
+.skills-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.skills-prompt {
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: #0d1117;
+}
+
+.skills-prompt__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+}
+
+.skills-prompt__label {
+  font-family: var(--font-mono);
+  font-size: clamp(0.65rem, 0.9vw, 0.78rem);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.skills-fm-toggle {
+  font-family: var(--font-mono);
+  font-size: clamp(0.6rem, 0.85vw, 0.74rem);
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.2rem 0.55rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.skills-fm-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.skills-fm-toggle--active {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(124, 106, 247, 0.1);
+}
+
+.skills-prompt__content {
+  padding: 1rem 1.2rem;
+  font-family: var(--font-mono);
+  font-size: clamp(0.78rem, 1.2vw, 0.9rem);
+  color: var(--green);
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.skills-benefit {
+  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-style: italic;
+  border-left: 3px solid var(--green);
+  padding-left: 1rem;
+}
