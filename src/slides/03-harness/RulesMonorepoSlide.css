@@ -40,7 +40,7 @@
   font-weight: 600;
 }
 
-.tree-name--claude {
+.tree-name--cursor {
   color: var(--accent);
   font-weight: 700;
 }
@@ -61,7 +61,7 @@
   white-space: nowrap;
 }
 
-.tree-row--claude {
+.tree-row--cursor {
   background: color-mix(in srgb, var(--accent) 6%, transparent);
   border-radius: 6px;
   padding-top: 0.1rem;

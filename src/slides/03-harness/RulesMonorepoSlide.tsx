@@ -6,7 +6,7 @@ import './RulesMonorepoSlide.css'
 
 type BaseNode = { revealOnStep?: number }
 type TreeNode =
-  | (BaseNode & { kind: 'claude'; name: string; note: string })
+  | (BaseNode & { kind: 'cursor'; name: string; note: string })
   | (BaseNode & { kind: 'rules-md'; name: string; note: string })
   | (BaseNode & { kind: 'dir'; name: string; children: TreeNode[] })
   | (BaseNode & { kind: 'ellipsis' })
@@ -17,13 +17,13 @@ const tree: TreeNode[] = [
     name: 'my-app/',
     children: [
       {
-        kind: 'claude',
-        name: 'CLAUDE.md',
+        kind: 'cursor',
+        name: 'AGENTS.md',
         note: 'tech stack, git conventions, shared tooling',
       },
       {
         kind: 'dir',
-        name: '.claude/',
+        name: '.cursor/',
         revealOnStep: 1,
         children: [
           {
@@ -46,8 +46,8 @@ const tree: TreeNode[] = [
         name: 'frontend/',
         children: [
           {
-            kind: 'claude',
-            name: 'CLAUDE.md',
+            kind: 'cursor',
+            name: 'AGENTS.md',
             note: 'React patterns, CSS conventions, Vite config',
           },
           { kind: 'dir', name: 'src/', children: [{ kind: 'ellipsis' }] },
@@ -58,8 +58,8 @@ const tree: TreeNode[] = [
         name: 'backend/',
         children: [
           {
-            kind: 'claude',
-            name: 'CLAUDE.md',
+            kind: 'cursor',
+            name: 'AGENTS.md',
             note: 'Go module layout, API patterns, DB migrations',
           },
           { kind: 'dir', name: 'cmd/', children: [{ kind: 'ellipsis' }] },
@@ -100,15 +100,15 @@ function TreeRow({
     )
   }
 
-  if (node.kind === 'claude') {
+  if (node.kind === 'cursor') {
     return (
       <div
-        className={cls('tree-row tree-row--claude')}
+        className={cls('tree-row tree-row--cursor')}
         style={{ paddingLeft: `${indent}rem` }}
       >
         <span className="tree-connector">├──</span>
         <span className="tree-icon">📄</span>
-        <span className="tree-name tree-name--claude">{node.name}</span>
+        <span className="tree-name tree-name--cursor">{node.name}</span>
         <span className="tree-note">← {node.note}</span>
       </div>
     )
@@ -167,7 +167,7 @@ export function RulesMonorepoSlide() {
       <SlideTitle
         tag="03 · Harness Engineering"
         title="Rules"
-        subtitle="Each folder can have its own CLAUDE.md"
+        subtitle="Each folder can have its own AGENTS.md"
       />
       <div className="monorepo-layout">
         <div className="monorepo-tree">

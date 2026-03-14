@@ -31,7 +31,7 @@ export function RulesSlide() {
       <SlideTitle
         tag="03 · Harness Engineering"
         title="Rules"
-        subtitle="CLAUDE.md — the agent's persistent memory"
+        subtitle="AGENTS.md — the agent's persistent memory"
       />
       <div className="rules-layout">
         <div className="rules-file">
@@ -48,7 +48,7 @@ export function RulesSlide() {
               className="rules-file__dot"
               style={{ background: '#4ade80' }}
             />
-            <span className="rules-file__name">CLAUDE.md</span>
+            <span className="rules-file__name">AGENTS.md</span>
           </div>
           <div className="rules-file__body">
             {sections.map((s) => (

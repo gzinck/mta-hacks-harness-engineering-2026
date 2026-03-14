@@ -92,7 +92,7 @@ export function ToolsSlide() {
       <SlideTitle
         tag="03 · Harness Engineering"
         title="Tools"
-        subtitle="The primitives Claude uses to act on the world"
+        subtitle="The primitives Cursor uses to act on the world"
       />
       <div className="tools-grid">
         {tools.map((tool, i) => (

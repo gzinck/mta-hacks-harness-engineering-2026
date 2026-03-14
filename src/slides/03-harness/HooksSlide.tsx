@@ -6,60 +6,35 @@ import './HooksSlide.css'
 
 const hookExamples = [
   {
-    event: 'PostToolUse',
-    trigger: 'After Edit/Write — auto-lint',
-    example: `// .claude/settings.json
+    event: 'afterFileEdit',
+    trigger: 'After file edit — format + lint',
+    example: `// .cursor/hooks.json
 {
+  "version": 1,
   "hooks": {
-    "PostToolUse": [{
-      "matcher": "Edit|Write",
-      "hooks": [{
-        "type": "command",
-        "command": "pnpm eslint --fix \\"$CLAUDE_TOOL_RESPONSE_FILE_PATH\\"",
-        "statusMessage": "Linting..."
-      }]
-    }]
+    "afterFileEdit": [
+      { "command": ".cursor/hooks/format.sh" }
+    ]
   }
 }`,
-    use: 'Auto-fix lint errors after every file write — Claude never ships code that fails the linter',
+    use: 'Auto-format and fix lint after every file write — Cursor never ships code that fails the linter',
   },
   {
-    event: 'Stop',
-    trigger: "When Claude thinks it's done — simplify",
-    example: `// .claude/settings.json
+    event: 'beforeShellExecution',
+    trigger: 'Before shell command — safety check',
+    example: `// .cursor/mcp.json
 {
   "hooks": {
-    "Stop": [{
-      "hooks": [{
-        "type": "agent",
-        "prompt": "Review git diff --cached. If any files look
-over-engineered or unnecessarily complex, run the /simplify
-skill on them and fix in-place. Return { ok: true } when done.",
-        "statusMessage": "Simplifying generated code..."
-      }]
-    }]
+    "beforeShellExecution": [
+      {
+        "type": "prompt",
+        "prompt": "Does this command look safe to execute? Only allow read-only operations.",
+        "timeout": 10
+      }
+    ]
   }
 }`,
-    use: 'After Claude finishes, a second agent automatically reviews and simplifies the output',
-  },
-  {
-    event: 'Stop',
-    trigger: "When Claude thinks it's done — changelog",
-    example: `// .claude/settings.json
-{
-  "hooks": {
-    "Stop": [{
-      "hooks": [{
-        "type": "agent",
-        "prompt": "Run git diff --cached --name-only. If there are
-staged changes, prepend a new entry to CHANGELOG.md with
-today's date and the list of changed files. Return { ok: true }.",
-        "statusMessage": "Updating CHANGELOG.md..."
-      }]
-    }]
-  }
-}`,
-    use: 'Every time Claude finishes, an agent writes the changed files into CHANGELOG.md',
+    use: 'Before every shell command, an LLM reviews it and blocks execution if it looks destructive.',
   },
 ]
 
@@ -85,7 +60,7 @@ export function HooksSlide() {
       <SlideTitle
         tag="03 · Harness Engineering"
         title="Hooks"
-        subtitle="Automate the things Claude forgets to do"
+        subtitle="Automate the things the agent forgets to do"
       />
       <div className="hooks-layout">
         <div className="hooks-tabs">

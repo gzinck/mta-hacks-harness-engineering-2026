@@ -1,3 +1,79 @@
+/* ── Intro animated title block ──────────────────────────────────────────── */
+
+/*
+ * Phase 0 (default): centred in the slide.
+ * Phase 1 (--docked): moved to exactly where SlideTitle sits —
+ *   top: 5vh, left: 7vw (matching SlideLayout padding).
+ * The real SlideTitle is visibility:hidden so it holds its layout space.
+ */
+.ctx-intro-block {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  text-align: left;
+  z-index: 10;
+  pointer-events: none;
+  transition:
+    top 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+    left 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ctx-intro-block--docked {
+  top: 5vh;
+  left: 7vw;
+  transform: translate(0, 0);
+}
+
+.ctx-intro-tag {
+  font-family: var(--font-mono);
+  font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ctx-intro-heading {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--text);
+  margin: 0;
+}
+
+.ctx-intro-sub {
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  color: var(--text-muted);
+  margin: 0;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.ctx-intro-sub--hidden {
+  opacity: 0;
+}
+
+/* ── Main content wrapper ────────────────────────────────────────────────── */
+
+.ctx-main-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  opacity: 1;
+  transition: opacity 0.4s ease 0.3s;
+}
+
+.ctx-main-wrap--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* ── Layout ──────────────────────────────────────────────────────────────── */
 
 .ctx-layout {
