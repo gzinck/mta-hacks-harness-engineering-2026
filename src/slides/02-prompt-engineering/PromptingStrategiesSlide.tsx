@@ -8,31 +8,26 @@ const strategies = [
     name: 'Role + Goal',
     example:
       'You are a senior TypeScript engineer. Refactor this function to eliminate side effects.',
-    why: "Anchors the model's persona and narrows the task scope.",
   },
   {
     name: 'Chain of Thought',
     example:
       'Think step by step. First identify the bug, then explain why it occurs, then fix it.',
-    why: 'Forces reasoning before output — reduces hallucinated fixes.',
   },
   {
     name: 'Constrained Output',
     example:
       'Return only a JSON object with keys: { summary, files_changed, risk_level }',
-    why: 'Structured output is easier to parse and less prone to drift.',
   },
   {
     name: 'Few-Shot',
     example:
       'Here are 2 examples of good commit messages:\n[...]\nNow write one for this diff:',
-    why: 'Demonstrates the pattern instead of describing it abstractly.',
   },
   {
-    name: 'Ask for Advice',
+    name: 'Declarative Decision Request',
     example:
-      'I have retry logic happening in src/api/client.ts. What are the pros and cons of this approach? What other approaches are there? What would you recommend?',
-    why: 'Trades a single answer for a richer decision — surfaces trade-offs you may not have considered.',
+      'I have retry logic happening in src/api/client.ts.\n\nList the pros and cons of this approach in bullet points.\n\nProvide a summary of 3 alternative approaches with their pros and cons.\n\nState your recommendation and explain your reasoning.',
   },
 ]
 
@@ -107,12 +102,6 @@ export function PromptingStrategiesSlide() {
             {displayedText}
             {typing && <span className="ps-cursor" />}
           </pre>
-          <p
-            className="ps-why"
-            style={{ opacity: typing ? 0 : 1, transition: 'opacity 0.4s' }}
-          >
-            {s.why}
-          </p>
         </div>
       </div>
     </SlideLayout>

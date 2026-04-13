@@ -93,7 +93,7 @@ export function StateOfDevSlide() {
       <SlideTitle
         tag="01 · Intro"
         title="The State of Development"
-        subtitle="March 2026"
+        subtitle="April 2026"
       />
 
       {/* Single positioned container — labels + track are siblings here so

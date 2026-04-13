@@ -19,8 +19,6 @@ writing any files.
 
 Create .tsx + .css with named export and TypeScript
 props interface following project conventions.`,
-    benefit:
-      'Asks before acting — no wasted scaffolding for the wrong component.',
   },
   {
     command: '/update-doc',
@@ -43,8 +41,6 @@ Fetch the doc:
 
 Apply the requested edits with batchUpdate.
 Use gws schema output to build correct --json flags.`,
-    benefit:
-      'Grounds the model in real API shapes — no hallucinated field names.',
   },
   {
     command: '/review-pr',
@@ -60,8 +56,6 @@ Spawn three subagents in parallel:
   3. Docs & changelog reviewer
 
 Merge all findings into a single markdown report.`,
-    benefit:
-      'Parallel subagents cut review time — each focuses on one concern.',
   },
 ]
 
@@ -127,7 +121,6 @@ export function SkillsSlide() {
             </div>
             <pre className="skills-prompt__content">{templateContent}</pre>
           </div>
-          <p className="skills-benefit">{s.benefit}</p>
         </div>
       </div>
     </SlideLayout>
